@@ -1,5 +1,8 @@
 package com.hyunuk.flos.ui.screens.main
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
@@ -13,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
@@ -60,11 +65,10 @@ import com.hyunuk.flos.util.ShowSystemUI
         - 네이버 예약 연동
  */
 
+@SuppressLint("ContextCastToActivity")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavController,startDestination:String) {
-    ShowSystemUI()
-
     val bottomNavController = rememberNavController()
 
     Scaffold(

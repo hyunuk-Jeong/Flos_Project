@@ -33,19 +33,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hyunuk.compose_sdp.sdp_h
 import com.hyunuk.compose_sdp.sdp_w
 import com.hyunuk.flos.R
-import com.hyunuk.flos.common.instagramPostList
+import com.hyunuk.flos.repository.HomeBannerImageList
+import com.hyunuk.flos.repository.instagramPostList
 import com.hyunuk.flos.theme.DeepGreenPrimary
 import com.hyunuk.flos.theme.SageGreen
 import com.hyunuk.flos.theme.Typography
 import com.hyunuk.flos.theme.White
 import com.hyunuk.flos.theme.flosTheme
+import com.hyunuk.flos.ui.components.AutoSlidingImageCarousel
 import com.hyunuk.flos.ui.components.InstagramPost
 import com.hyunuk.flos.ui.screens.main.MainScreen
 
@@ -91,31 +92,39 @@ fun HomeScreen(navController: NavController) {
 
 @Composable
 fun HomeBanner() {
-    Card(
-        shape = RoundedCornerShape(16.sdp_w()),
-        elevation = CardDefaults.cardElevation(4.sdp_w()),
-        modifier = Modifier.padding(16.sdp_w())
-    ) {
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .fillMaxWidth()
+    val imageList = HomeBannerImageList
+    AutoSlidingImageCarousel(
+        imageResList = imageList,
+        intervalMillis = 5000L,
+    ) { page ->
+        Card(
+            shape = RoundedCornerShape(16.sdp_w()),
+            elevation = CardDefaults.cardElevation(4.sdp_w()),
+            modifier = Modifier.padding(16.sdp_w())
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_splash),
-                contentDescription = "HomeBanner",
-                modifier = Modifier.aspectRatio(16f / 15f),
-                alignment = Alignment.Center,
-                contentScale = ContentScale.FillWidth
-            )
-            Text(
-                text = "당신을 위한 힐링 공간, \n플로스 스파",
-                color = White,
+            Box(
+                contentAlignment = Alignment.Center,
                 modifier = Modifier
-                    .padding(16.sdp_w())
-                    .align(Alignment.BottomStart),
-                style = Typography.titleLarge,
-            )
+                    .fillMaxWidth()
+            ) {
+                Image(
+                    painter = painterResource(id = imageList[page]),
+                    contentDescription = "HomeBanner",
+                    modifier = Modifier.aspectRatio(16f / 15f),
+                    alignment = Alignment.Center,
+                    contentScale = ContentScale.FillWidth
+                )
+                if(page % imageList.size == 0){
+                    Text(
+                        text = "당신을 위한 힐링 공간, \n플로스 스파",
+                        color = White,
+                        modifier = Modifier
+                            .padding(16.sdp_w())
+                            .align(Alignment.BottomStart),
+                        style = Typography.titleLarge,
+                    )
+                }
+            }
         }
     }
 }
@@ -256,8 +265,7 @@ fun HomeInstagramFeed() {
 @Preview(showBackground = true, widthDp = 450, heightDp = 922)
 @Composable
 fun Preview() {
-//    flosTheme {
-//        MainScreen(navController = rememberNavController(), "home")
-//    }
-    HomeInstagramFeed()
+    flosTheme {
+        MainScreen(navController = rememberNavController(), "home")
+    }
 }

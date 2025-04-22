@@ -1,11 +1,7 @@
-package com.hyunuk.flos.common
+package com.hyunuk.flos.repository
 
 import com.hyunuk.flos.R
-
-data class InstagramPostData(
-    val imageRes: Int, // drawable 리소스
-    val linkUrl: String // 인스타그램 경로 또는 딥링크
-)
+import com.hyunuk.flos.model.InstagramPostData
 
 val instagramPostList = listOf(
     InstagramPostData(R.drawable.ic_insta_9,"https://www.instagram.com/p/DIh99f9zltW/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="),

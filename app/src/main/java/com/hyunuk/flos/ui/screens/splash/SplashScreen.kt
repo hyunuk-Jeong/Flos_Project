@@ -22,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.hyunuk.compose_sdp.sdp_h
 import com.hyunuk.compose_sdp.sdp_w
 import com.hyunuk.flos.R
 import com.hyunuk.flos.theme.Typography
@@ -31,7 +32,6 @@ import com.hyunuk.flos.util.getScaleFactorForVertical
 
 @Composable
 fun SplashScreen(navController: NavController) {
-    HideSystemUI()
 
     // 이미지 로딩 (이미지를 painter로 가져옵니다)
     val imagePainter = painterResource(id = R.drawable.ic_splash)
@@ -77,7 +77,7 @@ fun SplashScreen(navController: NavController) {
                 text = "당신을 위한 힐링 공간, \n플로스 스파",
                 color = White,
                 modifier = Modifier
-                    .padding(20.sdp_w())
+                    .padding(start = 20.sdp_w(), bottom = 80.sdp_h())
                     .align(Alignment.BottomStart),
                 style = Typography.displayLarge,
             )

@@ -20,7 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import com.hyunuk.compose_sdp.sdp_h
 import com.hyunuk.compose_sdp.sdp_w
-import com.hyunuk.flos.common.InstagramPostData
+import com.hyunuk.flos.model.InstagramPostData
 
 @Composable
 fun InstagramPost(post: InstagramPostData) {
