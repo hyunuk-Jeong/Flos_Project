@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.hyunuk.flos.common.NavRoutes
+import com.hyunuk.flos.ui.screens.careService.CareServiceDetailScreen
 import com.hyunuk.flos.ui.screens.main.MainScreen
 import com.hyunuk.flos.ui.screens.splash.SplashScreen
 
@@ -29,6 +30,20 @@ fun AppNavGraph() {
         ) { backStackEntry ->
             val tab = backStackEntry.arguments?.getString("tab") ?: "home"
             MainScreen(navController = navController, startDestination = tab)
+        }
+
+        composable(
+            route = "${NavRoutes.CareServiceDetail.route}/{route}",
+            arguments = listOf(
+                navArgument("route"){
+                    type = NavType.StringType
+                }
+            )
+        ){
+            backStackEntry ->
+            val routeParam = backStackEntry.arguments?.getString("route") ?: ""
+            // 이걸 CareServiceDetailScreen 같은 곳에 넘기면 됨
+            CareServiceDetailScreen(navController = navController, route = routeParam)
         }
 
     }

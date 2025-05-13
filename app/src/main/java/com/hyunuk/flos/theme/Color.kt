@@ -16,3 +16,4 @@ val SageGreen = Color(0xFFB2AC88)       // 밝고 부드러운 세이지 그린
 val SoftBlack = Color(0xFF333333)          // 텍스트나 비선택 아이템
 val White = Color(0xFFFFFFFF)              // 배경
 val OffWhite = Color(0xFFFAFAFA)           // 부드러운 흰색 배경
+val LightGray = Color(0xFFEEEEEE)

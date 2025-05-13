@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.hyunuk.flos"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -51,7 +51,9 @@ android {
         }
     }
 }
-
+configurations.implementation{
+    exclude(group = "com.intellij", module = "annotations")
+}
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -64,6 +66,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.ui.test.android)
+    implementation(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -74,10 +77,17 @@ dependencies {
 
     implementation (libs.hilt.android)
     ksp (libs.hilt.compiler)
+    implementation (libs.androidx.hilt.navigation.compose)
 
-    implementation("androidx.navigation:navigation-compose:2.8.9")
-    implementation("androidx.compose.material:material:1.7.8")
-    implementation("com.github.hyunuk-Jeong:compose-sdp:v1.0.04")
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.material)
+    implementation(libs.compose.sdp)
+
+
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+
+    implementation (libs.gson)
 
 }
 

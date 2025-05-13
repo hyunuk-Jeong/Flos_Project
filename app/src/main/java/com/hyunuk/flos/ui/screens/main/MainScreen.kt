@@ -1,23 +1,18 @@
 package com.hyunuk.flos.ui.screens.main
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
@@ -28,16 +23,16 @@ import com.hyunuk.compose_sdp.sdp_h
 import com.hyunuk.compose_sdp.sdp_w
 import com.hyunuk.flos.R
 import com.hyunuk.flos.common.BottomNavItem
-import com.hyunuk.flos.navigation.AppNavGraph
+import com.hyunuk.flos.repository.PopupList
 import com.hyunuk.flos.theme.DeepGreenPrimary
 import com.hyunuk.flos.theme.flosTheme
 import com.hyunuk.flos.ui.components.BottomNavigationBar
+import com.hyunuk.flos.ui.components.SequentialPopupDialog
 import com.hyunuk.flos.ui.screens.careService.CareServiceScreen
 import com.hyunuk.flos.ui.screens.chat.ChatScreen
 import com.hyunuk.flos.ui.screens.home.HomeScreen
 import com.hyunuk.flos.ui.screens.profile.ProfileScreen
 import com.hyunuk.flos.ui.screens.reservation.ReservationScreen
-import com.hyunuk.flos.util.ShowSystemUI
 
 /*
    화면구성
@@ -70,6 +65,9 @@ import com.hyunuk.flos.util.ShowSystemUI
 @Composable
 fun MainScreen(navController: NavController,startDestination:String) {
     val bottomNavController = rememberNavController()
+
+    //순차적으로 팝업 리스트 출력
+    SequentialPopupDialog(popupList = PopupList)
 
     Scaffold(
         topBar = {

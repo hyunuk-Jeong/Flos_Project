@@ -36,7 +36,6 @@ fun getScaleFactorForVertical(context: Context, image: Painter): Float {
     // 이미지 높이 (dp)
     val imageHeightDp = image.intrinsicSize.height / density
 
-    Log.d("aaaaaaaa", "fullScreenDp: $fullScreenHeightDp, image: $imageHeightDp")
 
     return fullScreenHeightDp / imageHeightDp
 }

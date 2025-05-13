@@ -40,6 +40,7 @@ import com.hyunuk.compose_sdp.sdp_h
 import com.hyunuk.compose_sdp.sdp_w
 import com.hyunuk.flos.R
 import com.hyunuk.flos.repository.HomeBannerImageList
+import com.hyunuk.flos.repository.PopupList
 import com.hyunuk.flos.repository.instagramPostList
 import com.hyunuk.flos.theme.DeepGreenPrimary
 import com.hyunuk.flos.theme.SageGreen
@@ -48,6 +49,7 @@ import com.hyunuk.flos.theme.White
 import com.hyunuk.flos.theme.flosTheme
 import com.hyunuk.flos.ui.components.AutoSlidingImageCarousel
 import com.hyunuk.flos.ui.components.InstagramPost
+import com.hyunuk.flos.ui.components.SequentialPopupDialog
 import com.hyunuk.flos.ui.screens.main.MainScreen
 
 @Composable

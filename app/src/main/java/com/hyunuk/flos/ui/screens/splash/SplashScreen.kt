@@ -27,7 +27,6 @@ import com.hyunuk.compose_sdp.sdp_w
 import com.hyunuk.flos.R
 import com.hyunuk.flos.theme.Typography
 import com.hyunuk.flos.theme.White
-import com.hyunuk.flos.util.HideSystemUI
 import com.hyunuk.flos.util.getScaleFactorForVertical
 
 @Composable
