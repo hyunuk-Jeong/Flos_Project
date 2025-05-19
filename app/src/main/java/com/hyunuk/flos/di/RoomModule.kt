@@ -1,9 +1,10 @@
 package com.hyunuk.flos.di
 
 import android.content.Context
-import androidx.room.Room
 import com.hyunuk.flos.room.dao.ReservationDao
+import com.hyunuk.flos.room.dao.UserDao
 import com.hyunuk.flos.room.database.ReservationDatabase
+import com.hyunuk.flos.room.database.UserDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,5 +27,17 @@ object RoomModule {
     @Singleton
     fun provideReservationDao(database: ReservationDatabase):ReservationDao {
         return database.reservationDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserDatabase(@ApplicationContext context: Context): UserDatabase {
+        return UserDatabase.getDatabase(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserDao(database: UserDatabase):UserDao {
+        return database.userDao()
     }
 }

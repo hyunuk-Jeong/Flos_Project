@@ -9,6 +9,8 @@ import androidx.navigation.navArgument
 import com.hyunuk.flos.common.NavRoutes
 import com.hyunuk.flos.ui.screens.careService.CareServiceDetailScreen
 import com.hyunuk.flos.ui.screens.main.MainScreen
+import com.hyunuk.flos.ui.screens.profile.NoticeScreen
+import com.hyunuk.flos.ui.screens.profile.ReservationHistoryScreen
 import com.hyunuk.flos.ui.screens.splash.SplashScreen
 
 @Composable
@@ -44,6 +46,14 @@ fun AppNavGraph() {
             val routeParam = backStackEntry.arguments?.getString("route") ?: ""
             // 이걸 CareServiceDetailScreen 같은 곳에 넘기면 됨
             CareServiceDetailScreen(navController = navController, route = routeParam)
+        }
+
+        composable(NavRoutes.ReservationHistory.route){
+            ReservationHistoryScreen(navController = navController)
+        }
+
+        composable(NavRoutes.Notice.route){
+            NoticeScreen()
         }
 
     }

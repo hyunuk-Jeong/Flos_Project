@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import kotlin.random.Random
 
-@Database(entities = [ReservationData::class], version = 1, exportSchema = false)
+@Database(entities = [ReservationData::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class ReservationDatabase : RoomDatabase() {
     abstract fun reservationDao(): ReservationDao
@@ -37,6 +37,7 @@ abstract class ReservationDatabase : RoomDatabase() {
                     ReservationDatabase::class.java,
                     "reservation_database"
                 )
+                    .fallbackToDestructiveMigration()
                     .addCallback(RoomCallback())
                     .build()
                 INSTANCE = instance
@@ -88,7 +89,7 @@ abstract class ReservationDatabase : RoomDatabase() {
                                     reservationDate = randomDate.toString(),
                                     reservationTime = randomTime,
                                     serviceList = emptyList(),
-                                    userInfo = UserInfoData(userName = userNames.random(), userPhoneNumber = userPhoneNumbers.random()),
+                                    userInfo = UserInfoData(userId = 99999, userName = userNames.random(), userPhoneNumber = userPhoneNumbers.random()),
                                 )
 
                                 dao.insertReservation(reservation)

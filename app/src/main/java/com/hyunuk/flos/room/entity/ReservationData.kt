@@ -1,5 +1,6 @@
 package com.hyunuk.flos.room.entity
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.hyunuk.flos.model.ReservationServiceData
@@ -11,5 +12,5 @@ data class ReservationData(
     val reservationDate : String,   // yyyy-MM-dd
     val reservationTime : String,   // HH:mm
     val serviceList : List<ReservationServiceData>,
-    val userInfo : UserInfoData,
+    @Embedded val userInfo : UserInfoData,
 )

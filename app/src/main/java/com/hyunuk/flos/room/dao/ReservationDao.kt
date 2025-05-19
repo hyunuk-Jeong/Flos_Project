@@ -25,5 +25,8 @@ interface ReservationDao {
     @Query("SELECT * FROM reservations WHERE reservationDate = :date")
     fun getReservationsByDate(date: String): Flow<List<ReservationData>>
 
+    @Query("SELECT * FROM reservations WHERE userId = :userId ORDER BY reservationDate DESC, reservationTime DESC")
+    fun getReservationsByUserId(userId:Int): Flow<List<ReservationData>>
+
 
 }

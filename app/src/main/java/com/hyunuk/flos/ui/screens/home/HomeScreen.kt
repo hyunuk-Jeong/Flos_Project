@@ -2,6 +2,7 @@ package com.hyunuk.flos.ui.screens.home
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -54,6 +55,7 @@ import com.hyunuk.flos.ui.screens.main.MainScreen
 
 @Composable
 fun HomeScreen(navController: NavController) {
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()

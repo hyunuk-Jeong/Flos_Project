@@ -73,7 +73,6 @@ fun ChatScreen(navController: NavController) {
         ) {
             items(chatMessages.size) { index ->
                 ChatBubble(chatMessages[index])
-                Spacer(modifier = Modifier.height(8.sdp_h()))
 
                 // 봇 메시지 바로 아래에 옵션 버튼들 배치
                 if (!chatMessages[index].isMine) {
@@ -187,7 +186,7 @@ fun QnAOptionsRow(
 @Composable
 fun ChatBubble(message: ChatMessage) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().padding(vertical = 8.sdp_h()),
         horizontalArrangement = if (message.isMine) Arrangement.End else Arrangement.Start
     ) {
         Box(

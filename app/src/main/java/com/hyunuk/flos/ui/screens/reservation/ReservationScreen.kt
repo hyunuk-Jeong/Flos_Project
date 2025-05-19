@@ -1,5 +1,6 @@
 package com.hyunuk.flos.ui.screens.reservation
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -46,12 +47,15 @@ import com.hyunuk.compose_sdp.sdp_w
 import com.hyunuk.flos.model.ReservationServiceData
 import com.hyunuk.flos.model.UserInfoData
 import com.hyunuk.flos.room.entity.ReservationData
+import com.hyunuk.flos.room.entity.UserData
 import com.hyunuk.flos.theme.DeepGreenPrimary
 import com.hyunuk.flos.theme.LightGray
 import com.hyunuk.flos.theme.Typography
 import com.hyunuk.flos.util.PhoneNumberTransformation
+import com.hyunuk.flos.util.parseDateTimeString
 import com.hyunuk.flos.viewmodel.ReservationViewModel
 import com.hyunuk.flos.viewmodel.RoomReservationViewModel
+import com.hyunuk.flos.viewmodel.RoomUserViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,10 +63,14 @@ import kotlinx.coroutines.launch
 fun ReservationScreen(
     navController: NavController,
     viewModel: ReservationViewModel = viewModel(),
-    roomViewModel: RoomReservationViewModel = hiltViewModel()
+    roomViewModel: RoomReservationViewModel = hiltViewModel(),
+    roomUserViewModel : RoomUserViewModel = hiltViewModel()
 ) {
 
     val reservations by roomViewModel.reservations.collectAsState(initial = emptyList())
+    val user by roomUserViewModel.userData.collectAsState(initial = UserData(userInfo = UserInfoData()))
+
+    viewModel.userInfo = UserInfoData(userId = user.id, userName = user.userInfo.userName, userPhoneNumber = user.userInfo.userPhoneNumber, userProfile = user.userInfo.userProfile)
 
     //bottomSheet
     val sheetState = rememberModalBottomSheetState(
@@ -182,7 +190,9 @@ fun ReservationScreen(
         }
 
         Box(
-            modifier = Modifier.fillMaxWidth().align(Alignment.BottomCenter),
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter),
 
         ) {
             ReservationButton(
@@ -203,8 +213,11 @@ fun ReservationScreen(
                         )
                         roomViewModel.addReservation(reservationData)
 
+                        Toast.makeText(context, "예약이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+
                         //데이터 add후 reset
                         viewModel.resetData()
+
                     } else {
                         Toast.makeText(context, "모든 정보를 입력해주세요", Toast.LENGTH_SHORT).show()
                     }
@@ -428,22 +441,7 @@ fun ReservationButton(
     }
 }
 
-private fun parseDateTimeString(dateTimeString: String, type: String): String {
-    val datePattern = Regex("""(\d{4})-(\d{2})-(\d{2})""")
-    val timePattern = Regex("""(\d{2}):(\d{2})""")
 
-    if (type == "date") {
-        return datePattern.find(dateTimeString)?.let { matchResult ->
-            val (year, month, day) = matchResult.destructured
-            "${year.toInt()}년 ${month.toInt()}월 ${day.toInt()}일"
-        } ?: dateTimeString
-    } else {
-        return timePattern.find(dateTimeString)?.let { matchResult ->
-            val (time, minute) = matchResult.destructured
-            "${time.toInt()}시 ${minute.toInt()}분"
-        } ?: dateTimeString
-    }
-}
 
 @Preview(showBackground = true, widthDp = 450, heightDp = 922)
 @Composable

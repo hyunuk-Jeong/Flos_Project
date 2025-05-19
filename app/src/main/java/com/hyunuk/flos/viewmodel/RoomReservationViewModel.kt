@@ -24,6 +24,10 @@ class RoomReservationViewModel @Inject constructor(
         return dao.getReservationsByDate(date)
     }
 
+    fun getReservationByUserId(id:Int): Flow<List<ReservationData>> {
+        return dao.getReservationsByUserId(id)
+    }
+
     fun addReservation(reservation: ReservationData) {
         viewModelScope.launch {
             dao.insertReservation(reservation)

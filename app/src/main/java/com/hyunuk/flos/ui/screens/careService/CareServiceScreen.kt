@@ -25,6 +25,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hyunuk.compose_sdp.sdp_h
 import com.hyunuk.compose_sdp.sdp_w
+import com.hyunuk.flos.common.NavRoutes
 import com.hyunuk.flos.model.CareServiceData
 import com.hyunuk.flos.repository.CareServiceList
 import com.hyunuk.flos.theme.Typography
@@ -55,7 +56,7 @@ fun ServiceInfoCard(navController: NavController, careServiceData: CareServiceDa
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                navController.navigate("careServiceDetail/${careServiceData.route}")
+                navController.navigate("${NavRoutes.CareServiceDetail.route}/${careServiceData.route}")
             }
             .padding(horizontal = 16.sdp_w()),
         colors = CardDefaults.cardColors(containerColor = Color.White),
