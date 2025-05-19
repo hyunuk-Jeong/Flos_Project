@@ -45,6 +45,7 @@ import com.hyunuk.compose_sdp.sdp_h
 import com.hyunuk.compose_sdp.sdp_w
 import com.hyunuk.flos.model.ReservationServiceData
 import com.hyunuk.flos.model.UserInfoData
+import com.hyunuk.flos.room.entity.ReservationData
 import com.hyunuk.flos.theme.DeepGreenPrimary
 import com.hyunuk.flos.theme.LightGray
 import com.hyunuk.flos.theme.Typography
@@ -193,7 +194,17 @@ fun ReservationScreen(
                     // 완료 로직
                     if (viewModel.selectedDate.isNotEmpty() && viewModel.selectedTime.isNotEmpty() && viewModel.selectedServices.isNotEmpty()) {
                         // 예약 완료 처리
-                        //TODO RoomDB에 추가
+                        // RoomDB에 추가
+                        val reservationData = ReservationData(
+                            reservationDate = viewModel.selectedDate,
+                            reservationTime = viewModel.selectedTime,
+                            serviceList = viewModel.selectedServices,
+                            userInfo = viewModel.userInfo
+                        )
+                        roomViewModel.addReservation(reservationData)
+
+                        //데이터 add후 reset
+                        viewModel.resetData()
                     } else {
                         Toast.makeText(context, "모든 정보를 입력해주세요", Toast.LENGTH_SHORT).show()
                     }
